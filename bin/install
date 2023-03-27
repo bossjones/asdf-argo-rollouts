@@ -133,10 +133,11 @@ install_tool() {
     cp "$download_target_file" "$tmp_download_dir"
   fi
   log INFO "Copying binaries"
+  log DEBUG "cp step full_path_to_binary=${full_path_to_binary}, full_path_to_alt_binary=${full_path_to_alt_binary}"
   cp "$(get_binary_path_in_archive "${tmp_download_dir}" "${binary_name}" "${version}" "${platform}")" "${full_path_to_binary}"
   chmod +x "${full_path_to_binary}"
   if [[ -n "$binary_alt_name" ]]; then
-    log INFO "full_path_to_binary=${full_path_to_binary} full_path_to_alt_binary=${full_path_to_alt_binary}"
+    log DEBUG "cp alt step full_path_to_binary=${full_path_to_binary}, full_path_to_alt_binary=${full_path_to_alt_binary}"
     cp "${full_path_to_binary}" "${full_path_to_alt_binary}"
     chmod +x "${full_path_to_alt_binary}"
   fi
