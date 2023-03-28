@@ -131,6 +131,7 @@ install_tool() {
   else
     log INFO "Preparing downloaded file"
     log DEBUG "NOT gunzip step download_target_file=${download_target_file}, tmp_download_dir=${tmp_download_dir}, binary_name=${binary_name}, platform=${platform}, full_path_to_alt_binary=${full_path_to_alt_binary}"
+    # cp /tmp/asdf_ZMNOa7iy/sub/kubectl-argo-rollouts-linux-amd64 /tmp/asdf_ZMNOa7iy
     cp "$download_target_file" "$tmp_download_dir"
   fi
   log INFO "Copying binaries"
@@ -138,11 +139,12 @@ install_tool() {
   log DEBUG "cp step tmp_download_dir=${tmp_download_dir}, binary_name=${binary_name}, version=${version}, platform=${platform}, full_path_to_binary=${full_path_to_binary}, full_path_to_alt_binary=${full_path_to_alt_binary}"
   # "${binary_name}-${platform}"
   # cp "$(get_binary_path_in_archive "${tmp_download_dir}" "${binary_name}-${platform}" "${version}" "${platform}")" "${full_path_to_binary}"
-  cp "$(get_binary_path_in_archive "${tmp_download_dir}" "${binary_name}" "${version}" "${platform}")" "${full_path_to_binary}"
-  chmod +x "${full_path_to_binary}"
+  # cp "$(get_binary_path_in_archive "${tmp_download_dir}" "${binary_name}" "${version}" "${platform}")" "${full_path_to_binary}"
+  cp "${tmp_download_dir}/${binary_name}" "${full_path_to_alt_binary}"
+  # chmod +x "${full_path_to_binary}"
   if [[ -n "$binary_alt_name" ]]; then
-    log DEBUG "cp alt step full_path_to_binary=${full_path_to_binary}, full_path_to_alt_binary=${full_path_to_alt_binary}"
-    cp "${full_path_to_binary}" "${full_path_to_alt_binary}"
+    # log DEBUG "cp alt step full_path_to_binary=${full_path_to_binary}, full_path_to_alt_binary=${full_path_to_alt_binary}"
+    # cp "${full_path_to_binary}" "${full_path_to_alt_binary}"
     chmod +x "${full_path_to_alt_binary}"
   fi
 }
